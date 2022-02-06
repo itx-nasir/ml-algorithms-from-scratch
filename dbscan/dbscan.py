@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from typing import List, Tuple, Optional, Union
 import numpy.typing as npt
+from sklearn.preprocessing import StandardScaler
 
 class DBSCAN:
     """
@@ -116,7 +117,11 @@ def plot_clusters(data: np.ndarray, labels: List[int], title: str = "DBSCAN Clus
     
     plt.title(title)
     plt.legend()
-    plt.show()
+    
+    # Save the plot
+    filename = title.replace(' ', '_').replace('=', '').replace(',', '').replace('.', '') + '.png'
+    plt.savefig(filename)
+    plt.close()
 
 def test_dbscan(epsilon: float, min_points: int, data: np.ndarray):
     """Test DBSCAN with given parameters"""
